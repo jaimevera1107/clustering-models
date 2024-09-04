@@ -1,5 +1,3 @@
-Aquí tienes un ejemplo de cómo podrías estructurar el archivo README.md en Markdown para tu repositorio de GitHub que contiene la clase `ClusteringModel`. Este archivo proporcionará una descripción de la clase, cómo instalar las dependencias necesarias, y cómo usar la clase con un ejemplo.
-
 ```markdown
 # ClusteringModel
 
@@ -153,5 +151,3 @@ Plots the t-SNE results to visualize the clustering results in 2D.
 - ValueError if t-SNE results or labels are not available. Please run `fit_tsne` first.
 
 ```
-
-Este archivo `README.md` proporciona una guía clara para instalar las dependencias, usar la clase `ClusteringModel`, y explica cada uno de los métodos en detalle. Asegúrate de reemplazar `'your_module'` con el nombre real del archivo Python que contiene tu clase.

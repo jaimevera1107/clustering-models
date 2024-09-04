@@ -1,4 +1,3 @@
-```markdown
 
 # ClusteringModel
 
@@ -27,6 +26,7 @@ En el análisis de datos, el clustering es una técnica fundamental para agrupar
 Este enfoque modular y flexible permite adaptar el proceso de clustering a diferentes tipos de datos y objetivos analíticos, proporcionando una herramienta poderosa para el análisis exploratorio y la comprensión de datos complejos.
 
 
+```markdown
 
 # ClusteringModel
 

@@ -1,6 +1,11 @@
 
 # ClusteringModel
 
+<p align="center">
+  <img src="[URL_DE_LA_IMAGEN](https://www.freecodecamp.org/news/content/images/size/w2000/2020/09/analysis.png)" alt="Clustering" width="300"/>
+</p>
+
+
 ## Introducción
 
 El objetivo de la clase `ClusteringModel` es proporcionar una herramienta robusta para realizar análisis de clustering en conjuntos de datos. Esta clase facilita la aplicación de varios algoritmos de clustering, la selección del mejor modelo basado en métricas de evaluación y la visualización de resultados en dos dimensiones mediante t-SNE.

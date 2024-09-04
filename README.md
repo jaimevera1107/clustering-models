@@ -1,4 +1,33 @@
 ```markdown
+
+# ClusteringModel
+
+## Introducción
+
+El objetivo de la clase `ClusteringModel` es proporcionar una herramienta robusta para realizar análisis de clustering en conjuntos de datos. Esta clase facilita la aplicación de varios algoritmos de clustering, la selección del mejor modelo basado en métricas de evaluación y la visualización de resultados en dos dimensiones mediante t-SNE.
+
+### Objetivo
+
+En el análisis de datos, el clustering es una técnica fundamental para agrupar datos similares y descubrir patrones ocultos. La clase `ClusteringModel` está diseñada para simplificar el proceso de clustering al:
+
+1. **Reducir la Dimensionalidad**: Utiliza métodos como PCA y UMAP para transformar los datos a un espacio de menor dimensión, facilitando la aplicación de modelos de clustering.
+2. **Aplicar Modelos de Clustering**: Implementa varios algoritmos de clustering, incluyendo K-means, DBSCAN, y otros, para identificar patrones en los datos.
+3. **Evaluar Modelos**: Utiliza métricas de evaluación como el índice de silueta y el índice de Davies-Bouldin para seleccionar el mejor modelo de clustering.
+4. **Visualizar Resultados**: Emplea t-SNE para reducir la dimensionalidad a dos dimensiones y visualizar los resultados del clustering.
+
+### Funcionamiento General
+
+1. **Inicialización**: La clase se inicializa con un conjunto de datos, y opcionalmente con parámetros de configuración.
+2. **Reducción de Dimensionalidad**: Dependiendo de la configuración, se pueden aplicar técnicas de reducción de dimensionalidad para mejorar la efectividad del clustering.
+3. **Ajuste de Modelos**: Se ajustan diversos modelos de clustering a los datos, y se evalúan utilizando métricas predeterminadas.
+4. **Selección del Mejor Modelo**: Se selecciona el modelo de clustering que mejor se ajusta a los datos basándose en las métricas de evaluación.
+5. **Estimación de Etiquetas**: Se estiman las etiquetas de clustering utilizando el mejor modelo seleccionado.
+6. **Visualización**: Se utiliza t-SNE para reducir los datos a dos dimensiones y visualizar los resultados del clustering.
+
+Este enfoque modular y flexible permite adaptar el proceso de clustering a diferentes tipos de datos y objetivos analíticos, proporcionando una herramienta poderosa para el análisis exploratorio y la comprensión de datos complejos.
+
+
+
 # ClusteringModel
 
 The `ClusteringModel` class provides an interface for clustering analysis, including scaling, dimensionality reduction, and fitting various clustering models. It also supports evaluation of clustering results using silhouette scores and Davies-Bouldin index, and visualization using t-SNE.

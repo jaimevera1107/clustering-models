@@ -2,9 +2,8 @@
 # ClusteringModel
 
 <p align="center">
-  <img src="[URL_DE_LA_IMAGEN](https://www.freecodecamp.org/news/content/images/size/w2000/2020/09/analysis.png)" alt="Clustering" width="300"/>
+  <img src="https://www.freecodecamp.org/news/content/images/size/w2000/2020/09/analysis.png" alt="Clustering" width="300"/>
 </p>
-
 
 ## Introducción
 

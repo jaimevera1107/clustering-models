@@ -30,8 +30,6 @@ En el análisis de datos, el clustering es una técnica fundamental para agrupar
 Este enfoque modular y flexible permite adaptar el proceso de clustering a diferentes tipos de datos y objetivos analíticos, proporcionando una herramienta poderosa para el análisis exploratorio y la comprensión de datos complejos.
 
 
-```markdown
-
 # ClusteringModel
 
 The `ClusteringModel` class provides an interface for clustering analysis, including scaling, dimensionality reduction, and fitting various clustering models. It also supports evaluation of clustering results using silhouette scores and Davies-Bouldin index, and visualization using t-SNE.

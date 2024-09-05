@@ -1,77 +1,75 @@
-
 # ClusteringModel
 
 <p align="center">
   <img src="https://www.freecodecamp.org/news/content/images/size/w2000/2020/09/analysis.png" alt="Clustering" width="300"/>
 </p>
 
-## Introducción
+## Introduction
 
-El objetivo de la clase `ClusteringModel` es proporcionar una herramienta robusta para realizar análisis de clustering en conjuntos de datos. Esta clase facilita la aplicación de varios algoritmos de clustering, la selección del mejor modelo basado en métricas de evaluación y la visualización de resultados en dos dimensiones mediante t-SNE.
+The objective of the `ClusteringModel` class is to provide a robust tool for performing clustering analysis on datasets. This class simplifies the application of various clustering algorithms, the selection of the best model based on evaluation metrics, and the visualization of results in two dimensions using t-SNE.
 
-### Objetivo
+### Objective
 
-En el análisis de datos, el clustering es una técnica fundamental para agrupar datos similares y descubrir patrones ocultos. La clase `ClusteringModel` está diseñada para simplificar el proceso de clustering al:
+In data analysis, clustering is a fundamental technique for grouping similar data and discovering hidden patterns. The `ClusteringModel` class is designed to simplify the clustering process by:
 
-1. **Reducir la Dimensionalidad**: Utiliza métodos como PCA y UMAP para transformar los datos a un espacio de menor dimensión, facilitando la aplicación de modelos de clustering.
-2. **Aplicar Modelos de Clustering**: Implementa varios algoritmos de clustering, incluyendo K-means, DBSCAN, y otros, para identificar patrones en los datos.
-3. **Evaluar Modelos**: Utiliza métricas de evaluación como el índice de silueta y el índice de Davies-Bouldin para seleccionar el mejor modelo de clustering.
-4. **Visualizar Resultados**: Emplea t-SNE para reducir la dimensionalidad a dos dimensiones y visualizar los resultados del clustering.
+1. **Reducing Dimensionality**: It uses methods like PCA and UMAP to transform the data into a lower-dimensional space, facilitating the application of clustering models.
+2. **Applying Clustering Models**: It implements several clustering algorithms, including K-means, DBSCAN, and others, to identify patterns in the data.
+3. **Evaluating Models**: It uses evaluation metrics like the silhouette score and the Davies-Bouldin index to select the best clustering model.
+4. **Visualizing Results**: It employs t-SNE to reduce dimensionality to two dimensions and visualize the clustering results.
 
-### Funcionamiento General
+### General Workflow
 
-1. **Inicialización**: La clase se inicializa con un conjunto de datos, y opcionalmente con parámetros de configuración.
-2. **Reducción de Dimensionalidad**: Dependiendo de la configuración, se pueden aplicar técnicas de reducción de dimensionalidad para mejorar la efectividad del clustering.
-3. **Ajuste de Modelos**: Se ajustan diversos modelos de clustering a los datos, y se evalúan utilizando métricas predeterminadas.
-4. **Selección del Mejor Modelo**: Se selecciona el modelo de clustering que mejor se ajusta a los datos basándose en las métricas de evaluación.
-5. **Estimación de Etiquetas**: Se estiman las etiquetas de clustering utilizando el mejor modelo seleccionado.
-6. **Visualización**: Se utiliza t-SNE para reducir los datos a dos dimensiones y visualizar los resultados del clustering.
+1. **Initialization**: The class is initialized with a dataset, optionally with configuration parameters.
+2. **Dimensionality Reduction**: Depending on the configuration, dimensionality reduction techniques can be applied to enhance clustering effectiveness.
+3. **Model Fitting**: Various clustering models are fitted to the data and evaluated using predefined metrics.
+4. **Best Model Selection**: The clustering model that best fits the data is selected based on evaluation metrics.
+5. **Label Estimation**: Clustering labels are estimated using the selected best model.
+6. **Visualization**: t-SNE is used to reduce the data to two dimensions and visualize the clustering results.
 
-Este enfoque modular y flexible permite adaptar el proceso de clustering a diferentes tipos de datos y objetivos analíticos, proporcionando una herramienta poderosa para el análisis exploratorio y la comprensión de datos complejos.
-
+This modular and flexible approach allows the clustering process to be adapted to different types of data and analytical goals, providing a powerful tool for exploratory analysis and the understanding of complex data.
 
 ```python
-# Importar librerías necesarias
+# Import necessary libraries
 from sklearn.datasets import make_blobs
 import pandas as pd
 
-# Establecer una semilla aleatoria para reproducibilidad
+# Set a random seed for reproducibility
 SEED = 42
 
-# Generar un conjunto de datos de ejemplo con blobs
+# Generate a sample dataset with blobs
 X, _ = make_blobs(n_samples=1000, centers=5, cluster_std=0.4)
 
-# Diccionario de Exclusión (Opcional)
+# Exclusion Dictionary (Optional)
 exclude_dict = {
     'scalers': ['StandardScaler'],
     'reducers': ['UMAP'],
     'models': ['KMeans']
 }
 
-# Inicializar el modelo de clustering
+# Initialize the clustering model
 clustering_model = ClusteringModel(X, exclude_dict=exclude_dict)
 
-# Seleccionar el mejor modelo basado en el puntaje de silueta
+# Select the best model based on the silhouette score
 best_model_params, df_models_sorted = clustering_model.select_best_model()
 
-# Imprimir los resultados de los modelos
+# Print the model results
 print(df_models_sorted)
 
-# Imprimir los parámetros del mejor modelo
+# Print the best model parameters
 print(best_model_params)
 
-# Seleccionar manualmente un modelo (Opcional)
+# Manually select a model (Optional)
 manual_model_params = clustering_model.manual_selection_model(df_models_sorted, 3)
 
-# Imprimir los parámetros del modelo manualmente seleccionado
+# Print the manually selected model parameters
 print(manual_model_params)
 
-# Estimar las etiquetas usando el mejor modelo
+# Estimate labels using the best model
 labels = clustering_model.estimate_best_model(best_params=best_model_params)
 
-# Inicializar t-SNE para reducción de dimensionalidad
+# Initialize t-SNE for dimensionality reduction
 clustering_model.fit_tsne()
 
-# Graficar los resultados de t-SNE
+# Plot the t-SNE results
 clustering_model.plot_tsne(labels)
 ```

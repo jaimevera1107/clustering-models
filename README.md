@@ -61,7 +61,10 @@ print(df_models_sorted)
 print(best_model_params)
 
 # Seleccionar manualmente un modelo (Opcional)
-manual_selection = clustering_model.manual_selection_model(df_models_sorted, 3)
+manual_model_params = clustering_model.manual_selection_model(df_models_sorted, 3)
+
+# Imprimir los parámetros del modelo manualmente seleccionado
+print(manual_model_params)
 
 # Estimar las etiquetas usando el mejor modelo
 labels = clustering_model.estimate_best_model(best_params=best_model_params)

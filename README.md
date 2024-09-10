@@ -112,3 +112,51 @@ clustering_model.visualize_reduced_data(labels=labels)
 # ----------------------------------------------------------------------
 ```
 
+```python
+# ----------------------------------------------------------------------
+# Models Estimation Example (with Categorical Data Models, Default)
+# ----------------------------------------------------------------------
+
+data = {
+    'feature1': np.random.rand(1000) * 100,
+    'feature2': np.random.rand(1000) * 100,
+    'category1': np.random.choice(['A', 'B', 'C', 'D'], size=1000),
+    'category2': np.random.choice(['X', 'Y', 'Z'], size=1000)
+}
+df = pd.DataFrame(data)
+
+def get_pd_categorical_indices(df):
+        """
+        Given a DataFrame, extracts the indices of categorical columns.
+        
+        :param df: pandas DataFrame
+        :return: list of indices of categorical columns
+        """
+        # Identify categorical columns
+        categorical_cols = df.select_dtypes(include=['object', 'category']).columns
+        
+        # Get the indices of categorical columns
+        categorical_indices = [df.columns.get_loc(col) for col in categorical_cols]
+        
+        return categorical_indices
+
+# Get the indices of categorical columns
+cat_indices = get_pd_categorical_indices(df)
+
+# Convert DataFrame to a NumPy array
+X = df.to_numpy()
+
+# Initializing the class
+clust_model_cat = ClusteringModel(
+    X_input=X,
+    use_categorical=True,
+    categorical_cols=cat_indices
+)
+
+# Select the best model
+best_model_params, df_models_sorted = clust_model_cat.select_best_model()
+
+# Estimate the labels using the best model
+labels = clust_model_cat.estimate_best_model(best_params=best_model_params)
+# ----------------------------------------------------------------------
+```

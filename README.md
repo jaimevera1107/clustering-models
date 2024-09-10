@@ -24,7 +24,7 @@ In data analysis, clustering is a fundamental technique for grouping similar dat
 3. **Model Fitting**: Various clustering models are fitted to the data and evaluated using predefined metrics.
 4. **Best Model Selection**: The clustering model that best fits the data is selected based on evaluation metrics.
 5. **Label Estimation**: Clustering labels are estimated using the selected best model.
-6. **Visualization**: t-SNE is used to reduce the data to two dimensions and visualize the clustering results.
+6. **Visualization**: t-SNE/PCA is used to reduce the data to two dimensions and visualize the clustering results.
 
 This modular and flexible approach allows the clustering process to be adapted to different types of data and analytical goals, providing a powerful tool for exploratory analysis and the understanding of complex data.
 

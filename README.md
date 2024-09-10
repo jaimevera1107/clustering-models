@@ -15,7 +15,7 @@ In data analysis, clustering is a fundamental technique for grouping similar dat
 1. **Reducing Dimensionality**: It uses methods like PCA and UMAP to transform the data into a lower-dimensional space, facilitating the application of clustering models.
 2. **Applying Clustering Models**: It implements several clustering algorithms, including K-means, DBSCAN, and others, to identify patterns in the data.
 3. **Evaluating Models**: It uses evaluation metrics like the silhouette score and the Davies-Bouldin index to select the best clustering model.
-4. **Visualizing Results**: It employs t-SNE to reduce dimensionality to two dimensions and visualize the clustering results.
+4. **Visualizing Results**: It employs methods to reduce dimensionality to two dimensions and visualize the clustering results.
 
 ### General Workflow
 

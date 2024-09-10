@@ -29,47 +29,86 @@ In data analysis, clustering is a fundamental technique for grouping similar dat
 This modular and flexible approach allows the clustering process to be adapted to different types of data and analytical goals, providing a powerful tool for exploratory analysis and the understanding of complex data.
 
 ```python
-# Import necessary libraries
-from sklearn.datasets import make_blobs
-import pandas as pd
+# ----------------------------------------------------------------------
+# Models Estimation Example (default)
+# ----------------------------------------------------------------------
 
 # Set a random seed for reproducibility
 SEED = 42
 
 # Generate a sample dataset with blobs
-X, _ = make_blobs(n_samples=1000, centers=5, cluster_std=0.4)
+X, _ = make_blobs(
+    n_samples=5000,
+    centers=5,
+    cluster_std=0.4
+)
 
-# Exclusion Dictionary (Optional)
-exclude_dict = {
+# Initializing the class
+clustering_model = ClusteringModel(X_input=X)
+
+# Select the best model
+best_model_params, df_models_sorted = clustering_model.select_best_model()
+
+# Estimate the labels using the best model
+labels = clustering_model.estimate_best_model(best_params=best_model_params)
+
+# Visualize the clusters in two dimensions
+clustering_model.visualize_reduced_data(labels=labels)
+# ----------------------------------------------------------------------
+```
+
+```python
+# ----------------------------------------------------------------------
+# Models Estimation Example (with own Dicts)
+# ----------------------------------------------------------------------
+
+# Set a random seed for reproducibility
+SEED = 42
+
+# Generate a sample dataset with blobs
+X, _ = make_blobs(
+    n_samples=5000,
+    centers=5,
+    cluster_std=0.4
+)
+
+# Exclusion Dict (Optional)
+exclusion_dict = {
     'scalers': ['StandardScaler'],
     'reducers': ['UMAP'],
     'models': ['KMeans']
 }
 
-# Initialize the clustering model
-clustering_model = ClusteringModel(X, exclude_dict=exclude_dict)
+# Parameters Dict (Optional)
+params_dict = {
+    'DBSCAN': {
+        'eps': [round(i * 0.1, 1) for i in range(4, 6)],
+        'min_samples': list(range(16, 32 * 2, 16))
+    },
+    'KMeans': {'n_clusters': list(range(2, 7))},
+    'AgglomerativeClustering': {'n_clusters': list(range(2, 7))},
+    'MeanShift': {'bandwidth': list(range(2, 7))},
+    'FuzzyCMeans': {
+        'n_clusters': list(range(2, 7)),
+        'm': list(range(1, 4))
+    }
+}
 
-# Select the best model based on the silhouette score
+# Initializing the class
+clustering_model = ClusteringModel(
+    X_input=X,
+    exclude_dict=exclusion_dict,
+    dict_params=params_dict,
+)
+
+# Select the best model
 best_model_params, df_models_sorted = clustering_model.select_best_model()
 
-# Print the model results
-print(df_models_sorted)
-
-# Print the best model parameters
-print(best_model_params)
-
-# Manually select a model (Optional)
-manual_model_params = clustering_model.manual_selection_model(df_models_sorted, 3)
-
-# Print the manually selected model parameters
-print(manual_model_params)
-
-# Estimate labels using the best model
+# Estimate the labels using the best model
 labels = clustering_model.estimate_best_model(best_params=best_model_params)
 
-# Initialize t-SNE for dimensionality reduction
-clustering_model.fit_tsne()
-
-# Plot the t-SNE results
-clustering_model.plot_tsne(labels)
+# Visualize the clusters in two dimensions
+clustering_model.visualize_reduced_data(labels=labels)
+# ----------------------------------------------------------------------
 ```
+

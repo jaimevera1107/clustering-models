@@ -15,7 +15,7 @@ In data analysis, clustering is a fundamental technique for grouping similar dat
 1. **Reducing Dimensionality**: It uses methods like PCA and UMAP to transform the data into a lower-dimensional space, facilitating the application of clustering models.
 2. **Applying Clustering Models**: It implements several clustering algorithms, including K-means, DBSCAN, and others, to identify patterns in the data.
 3. **Evaluating Models**: It uses evaluation metrics like the silhouette score and the Davies-Bouldin index to select the best clustering model.
-4. **Visualizing Results**: It employs t-SNE to reduce dimensionality to two dimensions and visualize the clustering results.
+4. **Visualizing Results**: It employs methods to reduce dimensionality to two dimensions and visualize the clustering results.
 
 ### General Workflow
 
@@ -24,7 +24,7 @@ In data analysis, clustering is a fundamental technique for grouping similar dat
 3. **Model Fitting**: Various clustering models are fitted to the data and evaluated using predefined metrics.
 4. **Best Model Selection**: The clustering model that best fits the data is selected based on evaluation metrics.
 5. **Label Estimation**: Clustering labels are estimated using the selected best model.
-6. **Visualization**: t-SNE is used to reduce the data to two dimensions and visualize the clustering results.
+6. **Visualization**: t-SNE/PCA is used to reduce the data to two dimensions and visualize the clustering results.
 
 This modular and flexible approach allows the clustering process to be adapted to different types of data and analytical goals, providing a powerful tool for exploratory analysis and the understanding of complex data.
 
@@ -112,3 +112,51 @@ clustering_model.visualize_reduced_data(labels=labels)
 # ----------------------------------------------------------------------
 ```
 
+```python
+# ----------------------------------------------------------------------
+# Models Estimation Example (with Categorical Data Models, Default)
+# ----------------------------------------------------------------------
+
+data = {
+    'feature1': np.random.rand(1000) * 100,
+    'feature2': np.random.rand(1000) * 100,
+    'category1': np.random.choice(['A', 'B', 'C', 'D'], size=1000),
+    'category2': np.random.choice(['X', 'Y', 'Z'], size=1000)
+}
+df = pd.DataFrame(data)
+
+def get_pd_categorical_indices(df):
+        """
+        Given a DataFrame, extracts the indices of categorical columns.
+        
+        :param df: pandas DataFrame
+        :return: list of indices of categorical columns
+        """
+        # Identify categorical columns
+        categorical_cols = df.select_dtypes(include=['object', 'category']).columns
+        
+        # Get the indices of categorical columns
+        categorical_indices = [df.columns.get_loc(col) for col in categorical_cols]
+        
+        return categorical_indices
+
+# Get the indices of categorical columns
+cat_indices = get_pd_categorical_indices(df)
+
+# Convert DataFrame to a NumPy array
+X = df.to_numpy()
+
+# Initializing the class
+clust_model_cat = ClusteringModel(
+    X_input=X,
+    use_categorical=True,
+    categorical_cols=cat_indices
+)
+
+# Select the best model
+best_model_params, df_models_sorted = clust_model_cat.select_best_model()
+
+# Estimate the labels using the best model
+labels = clust_model_cat.estimate_best_model(best_params=best_model_params)
+# ----------------------------------------------------------------------
+```
